@@ -41,8 +41,8 @@ REST.prototype.configureExpress = function(connection) {
 
 REST.prototype.startServer = function() {
     if (!module.parent) {
-      app.listen(3000,function(){
-          console.log("All right ! I am alive at Port 3000.");
+      app.listen(8080,function(){
+          console.log("All right ! I am alive at Port 8080.");
       });
     }
 }
