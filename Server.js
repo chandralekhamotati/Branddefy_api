@@ -17,7 +17,7 @@ REST.prototype.connectMysql = function() {
         host     : 'localhost',
         user     : 'root',
         password : 'brandefy',
-        database : 'brandefy_app',
+        database : 'Brandefy_app',
         debug    :  false
     });
     pool.getConnection(function(err,connection){
