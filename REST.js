@@ -49,6 +49,67 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
             }
         });
     });
+    
+    router.post("/review",function(req,res){
+        console.log(req.body);
+        var query = "INSERT INTO product_reviews(p_id,uname,email,review,date_added) VALUES (?,?,?,?,now())";
+        var table = [req.body.pid,req.body.name,req.body.email,req.body.review];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                console.log(err);
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Review Added !"});
+            }
+        });
+    });
+    
+    router.post("/requestreview",function(req,res){
+        console.log(req.body);
+        var query = "INSERT INTO product_review_request(product_name,store_name,email,can_help,date_added) VALUES (?,?,?,?,now())";
+        var table = [req.body.product_name,req.body.store_name,req.body.email,req.body.can_help];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                console.log(err);
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Review Request Added !"});
+            }
+        });
+    });
+    
+     router.post("/subscribe",function(req,res){
+        console.log(req.body);
+        var query = "INSERT INTO subscribers(email,date_added) VALUES (?,now())";
+        var table = [req.body.email];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                console.log(err);
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Subscriber Added !"});
+            }
+        });
+    });
+    
+    
+      router.post("/feedback",function(req,res){
+        console.log(req.body);
+        var query = "INSERT INTO feedback(fname,email,message,date_added) VALUES (?,?,?,now())";
+        var table = [req.body.fname,req.body.email,req.body.message];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                console.log(err);
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Feedback Added !"});
+            }
+        });
+    });
 
    /* router.post("/users",function(req,res){
         var query = "INSERT INTO ??(??,??) VALUES (?,?)";
