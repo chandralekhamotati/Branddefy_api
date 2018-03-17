@@ -38,7 +38,7 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
     });
     
      router.get("/reviews/:product_id",function(req,res){
-        var query = "select pr.p_id, pr.uname, pr.review from product_reviews pr where p_id=?";
+        var query = "select pr.p_id, pr.uname, pr.review,date_added from product_reviews pr where p_id=?";
         var table = [req.params.product_id];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
